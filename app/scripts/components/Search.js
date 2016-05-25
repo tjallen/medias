@@ -36,8 +36,9 @@ export default class Search extends Component {
     });
   }
   handleChange(e) {
-    // prevent deleting a query firing the api call
-    if (e.target.value.length >= 3) {
+    if (e.target.value.length === 0) {
+      this.clearResults();
+    } else {
       this.apiQuery(this.storedKey, e.target.value);
     }
   }

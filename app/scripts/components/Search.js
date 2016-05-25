@@ -36,19 +36,20 @@ export default class Search extends Component {
     });
   }
   handleChange(e) {
-    if (e.target.value.length === 0) {
-      this.clearResults();
-    } else {
-      this.apiQuery(this.storedKey, e.target.value);
-    }
+    console.log('CHANGE HANDLED');
+    this.apiQuery(this.storedKey, e.target.value);
   }
   clearResults() {
     this.setState({
       results: [],
-    });
+    }, console.log('results cleared'));
   }
   // send the api get request
   apiQuery(key, query) {
+    // min query length here otherwise SHIT BREAKS LOl
+    if (query.length < 3) {
+      return;
+    }
     console.log(`apiQuery called with ${query}`);
     fetchJsonp(`https://api.themoviedb.org/3/search/multi?api_key=${key}&query=${query}`, {
       method: 'get',
@@ -67,6 +68,7 @@ export default class Search extends Component {
         });
       } else {
         console.log('no results');
+        this.clearResults();
       }
     }).catch((err) => {
       alert(err);
@@ -84,12 +86,12 @@ export default class Search extends Component {
         <DebounceInput
           type="text"
           placeholder="Search for stuff"
-          value={this.state.value}
           onChange={this.handleChange}
-          onBlur={this.clearResults}
-          minLength={3}
           debounceTimeout={450}
+          onBlur={this.clearResults}
+          forceNotifyOnBlur={false}
         />
+        {this.state.results.length > 1 ? <p>{this.state.results.length} results</p> : null}
         <ul>
           {this.state.results.map((result, index) => {
             return <li key={index}>{result.id} {result.title} {result.name}</li>;

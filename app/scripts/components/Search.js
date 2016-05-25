@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
+import DebounceInput from 'react-debounce-input';
 
 export default class Search extends Component {
   constructor() {
@@ -13,7 +14,7 @@ export default class Search extends Component {
     };
     this.storedKey = null;
     // manual bindings
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.getKey = this.getKey.bind(this);
     this.clearResults = this.clearResults.bind(this);
   }
@@ -34,8 +35,11 @@ export default class Search extends Component {
       alert(err);
     });
   }
-  handleKeyUp(e) {
-    this.apiQuery(this.storedKey, e.target.value);
+  handleChange(e) {
+    // prevent deleting a query firing the api call
+    if (e.target.value.length >= 3) {
+      this.apiQuery(this.storedKey, e.target.value);
+    }
   }
   clearResults() {
     this.setState({
@@ -76,15 +80,15 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <input
+        <DebounceInput
           type="text"
           placeholder="Search for stuff"
           value={this.state.value}
-          onSubmit={this.handleKeyUp}
-          onKeyUp={this.handleKeyUp}
+          onChange={this.handleChange}
           onBlur={this.clearResults}
-        >
-        </input>
+          minLength={3}
+          debounceTimeout={450}
+        />
         <ul>
           {this.state.results.map((result, index) => {
             return <li key={index}>{result.id} {result.title} {result.name}</li>;

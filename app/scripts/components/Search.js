@@ -61,11 +61,9 @@ export default class Search extends Component {
       },
     }).then((response) => response.json()
     ).then((json) => {
+      // if there are results, pass them to be filtered & set
       if (json.results.length > 0) {
-        console.log(json.results.length, ' results');
-        this.setState({
-          results: json.results,
-        });
+        this.formatAndSetResults(json.results);
       } else {
         console.log('no results');
         this.clearResults();
@@ -74,12 +72,30 @@ export default class Search extends Component {
       alert(err);
     });
   }
-  // probably standardise results.title etc as in vue here
-  // filterApiResults(results) {
-  //   for (const result of results) {
-  //     console.log(result);
-  //   }
-  // }
+  // format results from api - just standardise some props for consistency
+  // then setState with filtered results
+  formatAndSetResults(results) {
+    for (const result of results) {
+      switch (result.media_type) {
+        case 'movie':
+          result.name = result.title;
+          result.date = result.release_date;
+          break;
+        case 'tv':
+          result.date = result.first_air_date;
+          break;
+        case 'person':
+          break;
+        default:
+          // unknown media type WAT IS IT
+          console.log('unknown result:', result);
+      }
+    }
+    console.log(results);
+    this.setState({
+      results,
+    });
+  }
   render() {
     return (
       <div>
@@ -94,7 +110,14 @@ export default class Search extends Component {
         {this.state.results.length > 1 ? <p>{this.state.results.length} results</p> : null}
         <ul>
           {this.state.results.map((result, index) => {
-            return <li key={index}>{result.id} {result.title} {result.name}</li>;
+            return (
+              <li key={index}>
+                Name: {result.name}<br/>
+              Language: {result.original_language}<br/>
+            Type: {result.media_type}<br/>
+          Year: {result.date}<br/>
+              </li>
+            );
           })}
         </ul>
       </div>

@@ -1,0 +1,44 @@
+body {
+  background-color: #eee;
+  color: #242424;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+/* sample for testing sass syntax - delete me
+$foo: orange;
+
+html {
+  body {
+    h1 {
+      background-color: $foo;
+    }
+  }
+}
+
+*/
+
+/* sample for testing postcss modules - delete me
+
+.example {
+    display: flex;
+    transition: all .5s;
+    user-select: none;
+    background: linear-gradient(to bottom, white, black);
+}
+
+.phone {
+    &_title {
+        width: 500px;
+        @media (max-width: 500px) {
+            width: auto;
+        }
+        body.is_dark & {
+            color: white;
+        }
+    }
+    img {
+        display: block;
+    }
+}
+
+end sample */ 

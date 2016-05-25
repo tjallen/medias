@@ -1,10 +1,10 @@
 /* eslint-disable no-console, no-alert */
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
 
-export default class Search extends React.Component {
+export default class Search extends Component {
   constructor() {
     super();
     // set initial state
@@ -15,6 +15,7 @@ export default class Search extends React.Component {
     // manual bindings
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.getKey = this.getKey.bind(this);
+    this.clearResults = this.clearResults.bind(this);
   }
   componentDidMount() {
     this.getKey();
@@ -33,10 +34,13 @@ export default class Search extends React.Component {
       alert(err);
     });
   }
-  // update the state from input value
   handleKeyUp(e) {
-    console.log(e.target.value);
     this.apiQuery(this.storedKey, e.target.value);
+  }
+  clearResults() {
+    this.setState({
+      results: [],
+    });
   }
   // send the api get request
   apiQuery(key, query) {
@@ -78,6 +82,7 @@ export default class Search extends React.Component {
           value={this.state.value}
           onSubmit={this.handleKeyUp}
           onKeyUp={this.handleKeyUp}
+          onBlur={this.clearResults}
         >
         </input>
         <ul>

@@ -10,7 +10,6 @@ export default class Search extends React.Component {
     // set initial state
     this.state = {
       results: [],
-      query: null,
     };
     this.storedKey = null;
     // manual bindings
@@ -37,11 +36,7 @@ export default class Search extends React.Component {
   // update the state from input value
   handleKeyUp(e) {
     console.log(e.target.value);
-    this.setState({
-      query: e.target.value,
-    }, this.apiQuery(this.storedKey, e.target.value));
-    // if (e.key === 'Enter') {
-    // }
+    this.apiQuery(this.storedKey, e.target.value);
   }
   // send the api get request
   apiQuery(key, query) {

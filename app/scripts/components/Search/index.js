@@ -5,6 +5,8 @@ import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import DebounceInput from 'react-debounce-input';
 
+import SearchResults from './SearchResults';
+
 export default class Search extends Component {
   constructor() {
     super();
@@ -107,19 +109,7 @@ export default class Search extends Component {
           onBlur={this.clearResults}
           forceNotifyOnBlur={false}
         />
-        {this.state.results.length > 1 ? <p>{this.state.results.length} results</p> : null}
-        <ul>
-          {this.state.results.map((result, index) => {
-            return (
-              <li key={index}>
-                Name: {result.name}<br/>
-              Language: {result.original_language}<br/>
-            Type: {result.media_type}<br/>
-          Year: {result.date}<br/>
-              </li>
-            );
-          })}
-        </ul>
+        <SearchResults results={this.state.results} />
       </div>
     );
   }

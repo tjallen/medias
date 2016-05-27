@@ -13,10 +13,10 @@ export default class SearchResults extends Component {
       <div>
         {this.props.results.length > 1 ? <p>{this.props.results.length} results</p> : null}
         <ul>
-          {this.props.results.map((result) =>
+          {this.props.results.map((result, index) =>
             <li
               key={result.id}
-              onClick={() => this.props.onClick(result.id)}
+              onClick={() => this.props.onClick(result.id, index)}
             >
               Name: {result.name}<br />
               Language: {result.original_language}<br />

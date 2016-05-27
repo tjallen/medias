@@ -1,8 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+/* eslint-disable no-console, no-alert */
+
+import React, { Component } from 'react';
 import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
 
 import Search from './components/Search';
+import Medias from './components/Medias';
 
 export default class App extends Component {
   constructor() {
@@ -10,6 +13,7 @@ export default class App extends Component {
     // set initial state
     this.state = {
       results: [],
+      medias: [],
     };
 
     this.storedKey = null;
@@ -27,9 +31,9 @@ export default class App extends Component {
     fetch('keys.json', {
       method: 'get',
       dataType: 'json',
-    }).then((response) => {
-      return response.json();
-    }).then((json) => {
+    }).then((response) =>
+      response.json()
+    ).then((json) => {
       // store the key for use in api queries
       this.storedKey = json.keys.moviesdb;
     }).catch((err) => {
@@ -97,16 +101,38 @@ export default class App extends Component {
       results,
     });
   }
-  addResult(id) {
-    console.log('add this result', id);
+  addResult(id, index) {
+    // check if result was already added to medias
+    if (this.state.medias.find((a) => a.id === id)) {
+      alert('result already added to medias');
+      return;
+    }
+    // add clicked result to the new mutated medias array
+    const resultToAdd = this.state.results[index];
+    const mutatedList = this.state.medias;
+    mutatedList.push(resultToAdd);
+    // replace old medias array state with mutated array
+    this.setState({
+      medias: mutatedList,
+    });
+  }
+  openMediaModal(id) {
+    console.log('open ma modal', id);
   }
   render() {
     return (
-      <Search
-        results={this.state.results}
-        onChange={this.handleChange}
-        onClick={this.addResult}
-      />
+      <div>
+        <Search
+          results={this.state.results}
+          onChange={this.handleChange}
+          onClick={this.addResult}
+        />
+        <Medias
+          medias={this.state.medias}
+          onMediaClick={this.openMediaModal}
+          onRemoveMediaClick={this.removeMedia}
+        />
+      </div>
     );
   }
 }

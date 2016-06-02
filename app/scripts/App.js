@@ -45,9 +45,9 @@ export default class App extends Component {
     this.apiQuery(this.storedKey, e.target.value);
   }
   clearResults() {
-    // this.setState({
-    //   results: [],
-    // }, console.log('results cleared'));
+    this.setState({
+      results: [],
+    }, console.log('results cleared'));
   }
   // send the api get request
   apiQuery(key, query) {
@@ -115,6 +115,7 @@ export default class App extends Component {
     this.setState({
       medias: mutatedList,
     });
+    this.clearResults();
   }
   openMediaModal(id) {
     console.log('open ma modal', id);

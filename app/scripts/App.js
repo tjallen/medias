@@ -103,7 +103,7 @@ export default class App extends Component {
   }
   addResult(id, index) {
     // check if result was already added to medias
-    if (this.state.medias.find((a) => a.id === id)) {
+    if (this.state.medias.find(media => media.id === id)) {
       alert('result already added to medias');
       return;
     }

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import MediaItem from './MediaItem';
 
 export default class Medias extends Component {
   static propTypes = {
@@ -9,15 +10,11 @@ export default class Medias extends Component {
     return (
       <div className="medias">
           {this.props.medias.map((media) =>
-            <div
-              className="media--item"
+            <MediaItem
               key={media.id}
-              onClick={() => this.props.onMediaClick(media.id)}
-            >
-              <p>
-                {media.name}
-              </p>
-            </div>
+              media={media}
+              onMediaClick={this.props.onMediaClick}
+            />
           )}
       </div>
     );

@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
 
-import Search from './components/Search';
-import Medias from './components/Medias';
+import Search from './Search';
+import Medias from './Medias';
 
 export default class App extends Component {
   constructor() {

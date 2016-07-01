@@ -1,5 +1,6 @@
-// global postcss
-require('../styles/style.scss');
+// optional normalize.css and global css if needed
+import 'normalize.css/normalize.css';
+import '../global.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,6 +9,8 @@ import App from './App';
 const rootElement = document.getElementById('app');
 
 ReactDOM.render(
-  <App />,
+  <main>
+    <App />
+  </main>,
   rootElement
 );

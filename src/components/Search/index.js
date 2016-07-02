@@ -17,9 +17,9 @@ export default class Search extends Component {
     return (
       <div>
         <DebounceInput
-          className={styles.root}
+          className={styles.searchfield}
           type="text"
-          placeholder="Search for stuff"
+          placeholder="Search for movies, TV shows..."
           onChange={this.props.onChange}
           debounceTimeout={450}
           onBlur={this.clearResults}

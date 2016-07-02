@@ -68,6 +68,7 @@ export default class App extends Component {
     ).then((json) => {
       // if there are results, pass them to be filtered & set
       if (json.results.length > 0) {
+        console.log(json.results);
         this.formatAndSetResults(json.results);
       } else {
         console.log('no results');
@@ -83,11 +84,11 @@ export default class App extends Component {
     for (const result of results) {
       switch (result.media_type) {
         case 'movie':
-          result.name = result.title;
-          result.date = result.release_date;
+          result.name = `${result.title} (${result.original_title})`;
+          result.date = result.release_date.substring(0,4);
           break;
         case 'tv':
-          result.date = result.first_air_date;
+          result.date = result.first_air_date.substring(0,4);
           break;
         case 'person':
           break;

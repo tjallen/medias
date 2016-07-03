@@ -5,8 +5,6 @@ import DebounceInput from 'react-debounce-input';
 
 import SearchResults from './SearchResults';
 
-import styles from './styles.scss';
-
 export default class Search extends Component {
   static propTypes = {
     results: PropTypes.array.isRequired,
@@ -17,7 +15,7 @@ export default class Search extends Component {
     return (
       <div>
         <DebounceInput
-          className={styles.searchfield}
+          className="searchfield"
           type="text"
           placeholder="Search for movies, TV shows..."
           onChange={this.props.onChange}

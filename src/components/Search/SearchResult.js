@@ -1,28 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 
-import classNames from 'classnames';
-import styles from './styles.scss';
-
 export default class SearchResult extends Component {
   render() {
+    let type = this.props.result.media_type;
     return (
       <li
-        className={styles.media}
+        className="media"
         onClick={() => this.props.onClick(this.props.result.id, this.props.index)}
       >
         <p
-          className={styles.title}
+          className="title"
         >
           {this.props.result.name}
         </p>
         <span
-          className={styles.type}
+          className="typelabel"
         >
-          {this.props.result.media_type}
+          {type}
         </span>
         {/* conditionally render a date */}
         {this.props.result.date ? <span
-          className={styles.date}
+          className="date"
         >
           {this.props.result.date}
         </span> : null}

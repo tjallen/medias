@@ -2,7 +2,18 @@ import React, { Component, PropTypes } from 'react';
 
 export default class SearchResult extends Component {
   render() {
-    let type = this.props.result.media_type;
+    const mediaType = this.props.result.media_type;
+    let typeClass;
+    switch (mediaType) {
+      case 'tv':
+        typeClass = 'typelabel tv';
+        break;
+      case 'movie':
+        typeClass = 'typelabel movie';
+        break;
+      default:
+        // do nothing
+    }
     return (
       <li
         className="media"
@@ -14,9 +25,9 @@ export default class SearchResult extends Component {
           {this.props.result.name}
         </p>
         <span
-          className="typelabel"
+          className={typeClass}
         >
-          {type}
+          {mediaType}
         </span>
         {/* conditionally render a date */}
         {this.props.result.date ? <span

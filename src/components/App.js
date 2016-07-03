@@ -36,7 +36,8 @@ export default class App extends Component {
     ).then((json) => {
       // store the key for use in api queries
       this.storedKey = json.keys.moviesdb;
-    }).catch((err) => {
+    })
+    .catch((err) => {
       alert(err);
     });
   }
@@ -74,7 +75,8 @@ export default class App extends Component {
         console.log('no results');
         this.clearResults();
       }
-    }).catch((err) => {
+    })
+    .catch((err) => {
       alert(err);
     });
   }
@@ -84,11 +86,11 @@ export default class App extends Component {
     for (const result of results) {
       switch (result.media_type) {
         case 'movie':
-          result.name = `${result.title} (${result.original_title})`;
-          result.date = result.release_date.substring(0,4);
+          result.name = result.title;
+          result.date = result.release_date.substring(0, 4);
           break;
         case 'tv':
-          result.date = result.first_air_date.substring(0,4);
+          result.date = result.first_air_date.substring(0, 4);
           break;
         case 'person':
           break;

@@ -3,17 +3,7 @@ import React, { Component, PropTypes } from 'react';
 export default class SearchResult extends Component {
   render() {
     const mediaType = this.props.result.media_type;
-    let typeClass;
-    switch (mediaType) {
-      case 'tv':
-        typeClass = 'typelabel tv';
-        break;
-      case 'movie':
-        typeClass = 'typelabel movie';
-        break;
-      default:
-        // do nothing
-    }
+    const typeClass = `typelabel ${mediaType}`;
     return (
       <li
         className="media"

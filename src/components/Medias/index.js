@@ -15,6 +15,7 @@ export default class Medias extends Component {
               key={media.id}
               media={media}
               onMediaClick={this.props.onMediaClick}
+              poster={media.poster_path}
             />
           )}
         </ul>

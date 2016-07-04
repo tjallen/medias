@@ -1,5 +1,18 @@
-/* eslint-disable global-require, no-unused-vars */
+// postcss
+import postcssImport from 'postcss-import';
+import postcssUrl from 'postcss-url';
+import postcssCssnext from 'postcss-cssnext';
+// plugins
+import postcssSimpleVars from 'postcss-simple-vars';
+// import postcssNestedProps from 'postcss-nested-props';
+import postcssExtend from 'postcss-extend';
+import postcssNested from 'postcss-nested';
+import postcssMixins from 'postcss-mixins';
+// reporting
+import postcssBrowserReporter from 'postcss-browser-reporter';
+import postcssReporter from 'postcss-reporter';
 
+// webpack/npm/webpack plugins
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -108,17 +121,18 @@ module.exports = {
   },
   postcss() {
     return [
-      require('postcss-import')({ addDependencyTo: webpack }),
-      require('postcss-url'),
-      require('postcss-cssnext'),
-      // plugins
-      require('postcss-simple-vars'),
-      require('postcss-extend'),
-      require('postcss-nested'),
-      require('postcss-mixins'),
-      // reporting
-      require('postcss-browser-reporter'),
-      require('postcss-reporter'),
+      postcssImport({
+        addDependencyTo: webpack,
+      }),
+      postcssUrl,
+      postcssCssnext,
+      postcssSimpleVars,
+      // postcssNestedProps,
+      postcssExtend,
+      postcssNested,
+      postcssMixins,
+      postcssBrowserReporter,
+      postcssReporter,
     ];
-  }
+  },
 };

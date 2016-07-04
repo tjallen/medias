@@ -9,6 +9,7 @@ export default class Medias extends Component {
   render() {
     return (
       <div className="medias">
+        <ul className="medias__list">
           {this.props.medias.map((media) =>
             <MediaItem
               key={media.id}
@@ -16,6 +17,7 @@ export default class Medias extends Component {
               onMediaClick={this.props.onMediaClick}
             />
           )}
+        </ul>
       </div>
     );
   }

@@ -1,14 +1,21 @@
 import React, { PropTypes } from 'react';
 
+import placeImg from '../../images/place.jpg';
+
+const mediaStyle = {
+  backgroundImage: `url(${placeImg})`,
+}
+
 const MediaItem = (props) =>
-  <div
-    className="media--item"
+  <li
+    style={mediaStyle}
+    className="medias__item"
     onClick={() => props.onMediaClick(props.media.id)}
   >
     <p>
       {props.media.name}
     </p>
-  </div>;
+  </li>;
 
 MediaItem.propTypes = {
   media: PropTypes.object.isRequired,

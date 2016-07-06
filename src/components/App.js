@@ -86,9 +86,13 @@ export default class App extends Component {
     });
   }
   // format results from api - just standardise some props for consistency
-  // then setState with filtered results
+  // then setState with these formatted results
   formatAndSetResults(results) {
     for (const result of results) {
+      // new standard props
+      result.rating = null;
+      result.watched = null;
+      // standardise props that differ by type on api
       switch (result.media_type) {
         case 'movie':
           result.name = result.title;
@@ -100,7 +104,7 @@ export default class App extends Component {
         case 'person':
           break;
         default:
-          // unknown media type WAT IS IT
+          // unknown media type - shouldn't happen
           console.log('unknown result:', result);
       }
     }

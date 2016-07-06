@@ -24,6 +24,7 @@ export default class Modal extends Component {
     let type;
     let date;
     let lang;
+    let country;
     let text;
     // debug
     if (this.props.isOpen === true) {
@@ -37,6 +38,7 @@ export default class Modal extends Component {
       type = this.props.modalData.media_type;
       date = this.props.modalData.date;
       lang = this.props.modalData.original_language;
+      country = this.props.modalData.origin_country[0];
       text = this.props.modalData.overview;
     }
     return (
@@ -48,7 +50,7 @@ export default class Modal extends Component {
               onClick={this.props.onHideClick}
             >x</button>
             <p>{title} {type}</p>
-            <p>{date} {lang}</p>
+            <p>{date} {lang} {country}</p>
             <p>{text}</p>
             <p>Rating 1 2 3 4 5</p>
             <p>Watched || Watch list</p>

@@ -19,7 +19,6 @@ export default class Modal extends Component {
     let styles = {
       display: 'none',
     };
-    let status; // debug
     // declare data vars
     let title;
     let type;
@@ -34,7 +33,6 @@ export default class Modal extends Component {
     }
     // if there's modal data, set the vars to the data
     if (this.props.modalData) {
-      console.log('modalData recieved:', this.props.modalData);
       title = this.props.modalData.name;
       type = this.props.modalData.media_type;
       date = this.props.modalData.date;

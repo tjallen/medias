@@ -125,9 +125,6 @@ export default class App extends Component {
     });
     this.clearResults();
   }
-  getState() {
-    return this.state.medias;
-  }
   showModal(id) {
     const mediaToPass = this.state.medias.find(media => media.id === id);
     this.setState({

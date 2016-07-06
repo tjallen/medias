@@ -22,7 +22,7 @@ body {
 }
 
 main {
-  padding: 0 20px;
+  //padding: 0 20px;
 }
 
 ul, ol {
@@ -131,6 +131,25 @@ ul, ol {
       display: block;
       font-size: 13px;
       font-style: italic;
+    }
+  }
+}
+
+/* modal */
+
+.modal {
+  position: absolute;
+  z-index: 99;
+  background-color: #fff;
+  border: 2px solid black;
+  padding: 10px;
+  margin: 20px;
+  .modal__inner {
+    position: relative;
+    .modal__hide {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 }

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 import fetchJsonp from 'fetch-jsonp';
 
+import Modal from './Modal';
 import Search from './Search';
 import Medias from './Medias';
 
@@ -14,6 +15,8 @@ export default class App extends Component {
     this.state = {
       results: [],
       medias: [],
+      modalOpen: false,
+      modalData: null,
     };
 
     this.storedKey = null;
@@ -22,6 +25,8 @@ export default class App extends Component {
     this.getKey = this.getKey.bind(this);
     this.clearResults = this.clearResults.bind(this);
     this.addResult = this.addResult.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
   componentDidMount() {
     this.getKey();
@@ -120,12 +125,34 @@ export default class App extends Component {
     });
     this.clearResults();
   }
-  openMediaModal(id) {
+  getState() {
+    return this.state.medias;
+  }
+  showModal(id) {
+    const mediaToPass = this.state.medias.find(media => media.id === id);
+    this.setState({
+      modalData: mediaToPass,
+      modalOpen: true,
+    });
     console.log('open ma modal', id);
+    console.log(mediaToPass);
+  }
+  hideModal() {
+    console.log('hide the modal');
+    this.setState({
+      modalData: null,
+      modalOpen: false,
+    });
   }
   render() {
     return (
       <div>
+        <Modal
+          ref="modal"
+          isOpen={this.state.modalOpen}
+          modalData={this.state.modalData}
+          onHideClick={this.hideModal}
+        />
         <Search
           results={this.state.results}
           onChange={this.handleChange}
@@ -133,7 +160,7 @@ export default class App extends Component {
         />
         <Medias
           medias={this.state.medias}
-          onMediaClick={this.openMediaModal}
+          onMediaClick={this.showModal}
           onRemoveMediaClick={this.removeMedia}
         />
       </div>

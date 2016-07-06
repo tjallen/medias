@@ -4,10 +4,13 @@ export default class SearchResult extends Component {
   render() {
     const mediaType = this.props.result.media_type;
     const typeClass = `typelabel ${mediaType}`;
+    let country = (
+      this.props.result.origin_country ? this.props.result.origin_country[0] : null
+    );
     return (
       <li
         className="media"
-        onClick={() => this.props.onClick(this.props.result.id, this.props.index)}
+        onClick={() => this.props.onResultClick(this.props.result.id, this.props.index)}
       >
         <p
           className="title"
@@ -26,9 +29,14 @@ export default class SearchResult extends Component {
           {this.props.result.date}
         </span> : null}
         <span
-          className={this.props.result.original_language}
+          className="lang"
         >
           {this.props.result.original_language}
+        </span>
+        <span
+          className="country"
+        >
+          {country}
         </span>
       </li>
     );
@@ -38,5 +46,5 @@ export default class SearchResult extends Component {
 SearchResult.propTypes = {
   index: PropTypes.number.isRequired,
   result: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
 };

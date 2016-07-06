@@ -8,8 +8,24 @@ import SearchResults from './SearchResults';
 export default class Search extends Component {
   static propTypes = {
     results: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired,
+    apiQuery: PropTypes.func.isRequired,
+    apiKey: PropTypes.string,
+    onResultClick: PropTypes.func.isRequired,
+  }
+  constructor() {
+    super();
+    this.state = {
+      queryLength: 0,
+    };
+    this.searchFieldChanged = this.searchFieldChanged.bind(this);
+  }
+  searchFieldChanged(e) {
+    // console.log('CHANGE HANDLED');
+    // console.log(e.target.value.length);
+    this.setState({
+      queryLength: e.target.value.length,
+    });
+    this.props.apiQuery(this.props.apiKey, e.target.value);
   }
   render() {
     return (
@@ -18,14 +34,15 @@ export default class Search extends Component {
           className="searchfield"
           type="text"
           placeholder="Search for movies, TV shows..."
-          onChange={this.props.onChange}
+          onChange={this.searchFieldChanged}
           debounceTimeout={450}
           onBlur={this.clearResults}
           forceNotifyOnBlur={false}
         />
         <SearchResults
+          queryLength={this.state.queryLength}
           results={this.props.results}
-          onClick={this.props.onClick}
+          onResultClick={this.props.onResultClick}
         />
       </div>
     );

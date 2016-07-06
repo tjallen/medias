@@ -13,20 +13,20 @@ export default class App extends Component {
     super();
     // set initial state
     this.state = {
+      apiKey: null,
       results: [],
       medias: [],
       modalOpen: false,
       modalData: null,
     };
 
-    this.storedKey = null;
     // manual bindings
-    this.handleChange = this.handleChange.bind(this);
     this.getKey = this.getKey.bind(this);
     this.clearResults = this.clearResults.bind(this);
     this.addResult = this.addResult.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.apiQuery = this.apiQuery.bind(this);
   }
   componentDidMount() {
     this.getKey();
@@ -39,16 +39,14 @@ export default class App extends Component {
     }).then((response) =>
       response.json()
     ).then((json) => {
-      // store the key for use in api queries
-      this.storedKey = json.keys.moviesdb;
+      // store the key in state for component queries
+      this.setState({
+        apiKey: json.keys.moviesdb,
+      });
     })
     .catch((err) => {
       alert(err);
     });
-  }
-  handleChange(e) {
-    console.log('CHANGE HANDLED');
-    this.apiQuery(this.storedKey, e.target.value);
   }
   clearResults() {
     this.setState({
@@ -156,8 +154,9 @@ export default class App extends Component {
         />
         <Search
           results={this.state.results}
-          onChange={this.handleChange}
-          onClick={this.addResult}
+          onResultClick={this.addResult}
+          apiQuery={this.apiQuery}
+          apiKey={this.state.apiKey}
         />
         <Medias
           medias={this.state.medias}

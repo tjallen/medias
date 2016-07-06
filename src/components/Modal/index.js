@@ -6,14 +6,6 @@ export default class Modal extends Component {
     modalData: PropTypes.object,
     onHideClick: PropTypes.func.isRequired,
   }
-/*  componentWillMount(props) {
-    console.log('mounted');
-    console.log(this.props);
-  }
-  componentWillReceiveProps(props) {
-    console.log('got props');
-    console.log(this.props);
-  }*/
   render() {
     // inline styles
     let styles = {
@@ -38,7 +30,9 @@ export default class Modal extends Component {
       type = this.props.modalData.media_type;
       date = this.props.modalData.date;
       lang = this.props.modalData.original_language;
-      country = this.props.modalData.origin_country[0];
+      country = (
+        this.props.modalData.origin_country ? this.props.modalData.origin_country[0] : null
+      );
       text = this.props.modalData.overview;
     }
     return (

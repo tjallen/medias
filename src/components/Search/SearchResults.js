@@ -7,16 +7,16 @@ export default class SearchResults extends Component {
     return (
       <div className="results">
         <ul>
-          {/* if there are results, display the count */}
-          {this.props.results.length > 1 ? <li className="counter">
-          {this.props.results.length} results
-          </li> : null}
+        {/* if a query is being typed, display the result count */}
+        {this.props.queryLength > 1 ? <li className="counter">
+        {this.props.results.length} results
+        </li> : null}
           {/* iterate over the results array and render each */}
           {this.props.results.map((result, index) =>
             <SearchResult
               key={result.id}
               result={result}
-              onClick={this.props.onClick}
+              onResultClick={this.props.onResultClick}
               index={index}
             />
           )}
@@ -27,6 +27,7 @@ export default class SearchResults extends Component {
 }
 
 SearchResults.propTypes = {
+  queryLength: PropTypes.number,
   results: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
 };

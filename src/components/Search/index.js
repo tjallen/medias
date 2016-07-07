@@ -1,8 +1,12 @@
 /* eslint-disable no-console, no-alert */
 
+// react and npm module imported components
 import React, { Component, PropTypes } from 'react';
 import DebounceInput from 'react-debounce-input';
-
+// flux
+import * as SearchActions from '../../actions/SearchActions';
+import TodoStore from '../../stores/SearchStore';
+// child components
 import SearchResults from './SearchResults';
 
 export default class Search extends Component {

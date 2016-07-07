@@ -44,6 +44,8 @@ ul, ol {
 
 .results {
   background-color: #fff;
+  max-height: 300px;
+  overflow-y: scroll;
   .counter {
     font-weight: bold;
     padding: 6px;

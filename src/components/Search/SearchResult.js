@@ -10,7 +10,7 @@ export default class SearchResult extends Component {
     return (
       <li
         className="media"
-        onClick={() => this.props.onResultClick(this.props.result.id, this.props.index)}
+        onClick={() => this.props.onSearchResultClick(this.props.result)}
       >
         <p
           className="title"
@@ -44,7 +44,7 @@ export default class SearchResult extends Component {
 }
 
 SearchResult.propTypes = {
-  index: PropTypes.number.isRequired,
+  // index: PropTypes.number.isRequired,
   result: PropTypes.object.isRequired,
-  onResultClick: PropTypes.func.isRequired,
+  // onSearchResultClick: PropTypes.func.isRequired,
 };

@@ -8,6 +8,7 @@
     "classnames": "^2.2.5",
     "fetch-jsonp": "^1.0.0",
     "flux": "^2.1.1",
+    "keymirror": "^0.1.1",
     "normalize.css": "^4.1.1",
     "react": "^15.0.1",
     "react-debounce-input": "^2.3.2",

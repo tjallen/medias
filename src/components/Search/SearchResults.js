@@ -16,7 +16,7 @@ export default class SearchResults extends Component {
             <SearchResult
               key={result.id}
               result={result}
-              onResultClick={this.props.onResultClick}
+              onSearchResultClick={this.props.onSearchResultClick}
               index={index}
             />
           )}
@@ -29,5 +29,5 @@ export default class SearchResults extends Component {
 SearchResults.propTypes = {
   queryLength: PropTypes.number,
   results: PropTypes.array.isRequired,
-  onResultClick: PropTypes.func.isRequired,
+  onSearchResultClick: PropTypes.func.isRequired,
 };

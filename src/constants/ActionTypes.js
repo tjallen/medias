@@ -9,6 +9,8 @@ export default keyMirror({
   GET_SEARCH_RESULTS_FAIL: null,
   CLEAR_SEARCH_RESULTS: null,
   ADD_MEDIA: null,
+  ADD_MEDIA_SUCCESS: null,
+  ADD_MEDIA_FAIL: null,
   REMOVE_MEDIA: null,
   OPEN_MODAL: null,
   CLOSE_MODAL: null,

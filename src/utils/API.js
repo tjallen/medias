@@ -38,8 +38,9 @@ export function fetchResults(key, query, params='search/multi') {
         'Medias 0.1 (https://github.com/tjallen/medias); thomwork@gmail.com',
       },
     },
-  }).then((response) => response.json()
-  ).then((json) => {
+  })
+  .then((response) => response.json())
+  .then((json) => {
     dispatcher.dispatch({
       type: ActionTypes.GET_SEARCH_RESULTS_SUCCESS,
       results: json.results,

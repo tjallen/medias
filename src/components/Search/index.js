@@ -46,7 +46,7 @@ export default class Search extends Component {
   }*/
   onSearchBlur() {
     // shd be changed to callbacks/promises otherwise sync messes up
-    SearchActions.clearResults();
+    // SearchActions.clearResults();
   }
   render() {
     return (

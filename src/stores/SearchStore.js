@@ -49,7 +49,7 @@ class SearchStore extends EventEmitter {
       }
       case ActionTypes.CLEAR_SEARCH_RESULTS: {
         console.log('claering results');
-        // shd be part of callbacks/promises this.results = [];
+        this.results = [];
         this.emitChange();
         break;
       }

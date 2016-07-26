@@ -22,7 +22,7 @@ class MediaStore extends EventEmitter {
   getMedias() {
     return this.medias;
   }
-  addResult(result) {
+/*  addResult(result) {
     console.log('adding result', result);
     const id = result.id;
     // check if result was already added to medias
@@ -33,6 +33,18 @@ class MediaStore extends EventEmitter {
     this.medias.push(result);
     this.emitChange();
     // -> callback -> clearResults();
+  }*/
+  addResult(result) {
+    const id = result.id;
+    return new Promise((resolve, reject) => {
+      if (this.medias.find(media => media.id === id)) {
+        reject('promise rejected - media already added');
+      } else {
+        this.medias.push(result);
+        this.emitChange();
+        resolve('promise resolved!');
+      }
+    });
   }
   handleActions(action) {
     switch (action.type) {
@@ -46,7 +58,11 @@ class MediaStore extends EventEmitter {
       }
       case ActionTypes.ADD_MEDIA: {
         console.log('mediaStore got action', action);
-        this.addResult(action.result);
+        this.addResult(action.result)
+        .then(SearchActions.clearResults())
+        .catch((err) => {
+          console.log(err);
+        });
         break;
       }
       default: {

@@ -11,11 +11,12 @@ export default class Medias extends Component {
   // }
   constructor() {
     super();
+    // initial state
     this.state = {
       medias: MediaStore.getMedias(),
     };
     // prebind
-    // this.onMediaClick = MediaActions.onMediaClick.bind(this);
+    this.onMediaClick = MediaActions.onMediaClick.bind(this);
     // evt listeners
     MediaStore.on('CHANGE', () => {
       console.log('media view event listener CHANGE');
@@ -32,7 +33,7 @@ export default class Medias extends Component {
             <MediaItem
               key={media.id}
               media={media}
-              onMediaClick={this.props.onMediaClick}
+              onMediaClick={this.onMediaClick}
               poster={media.poster_path}
             />
           )}

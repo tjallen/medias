@@ -27,6 +27,7 @@ export function clearResults() {
   });
 }
 
+// ASYNC GOING IN HERE BREH
 export function onSearchResultClick(result) {
   dispatcher.dispatch({
     type: ActionTypes.ADD_MEDIA,
